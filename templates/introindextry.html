@@ -47,22 +47,18 @@
 
         <div class="container">
 
-                <div id="dolgusler" style="margin-left:-20px">
+                <div id="dolgusler" style="margin-left:-10px">
                 
-                <a style"display:inline">Sign In</a>
-                <img src="/static/img/portfolio/fookicon.png" style="width:2em"/>
-                <form id="formcuk">
+                <form id="login_form" method="post" action="/login/" style="margin-top: 10px">
 
-                    
+                    {% csrf_token %}
+                    <span style="color:white"> Username: <input type="text" name="username" value="" size="20" style="color:black" /> </span>
+                    <span style="color:white">Password: <input type="password" name="password" value="" size="20" style="color:black" /> </span>
 
-                    <span style="color:white">username:</span>
-                    <input type="text" name="firstname">
-                    
-                    <span style="color:white">password:
-                    <input type="text" name="lastname">
+                    <input type="submit" value="SIGN IN" />
 
                     </form>
-                <a class="navbar-brand pull-right" href="#page-top" style="position: relative; bottom: 10px; margin-top: -20px; margin-bottom: -10px;"
+                <a class="navbar-brand pull-right" href="#page-top" style="position: relative; bottom: 10px; margin-top: -35px; margin-bottom: -10px;"
 }>FOOK</a>
                 </div>
 

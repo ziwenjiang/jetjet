@@ -9,11 +9,11 @@
 
         {% if registered %}
         Fook says: <strong>thank you for registering!</strong>
-        <a href="/rango/">Return to the homepage.</a><br />
+        <a href="/jetapp/">Return to the homepage.</a><br />
         {% else %}
         Fook says: <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="/rango/register/"
+        <form id="user_form" method="post" action="/jetapp/register/"
                 enctype="multipart/form-data">
 
             {% csrf_token %}

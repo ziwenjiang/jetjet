@@ -23,7 +23,7 @@ $(function() {
                 type: "POST",
                 data: {
                     username: username,
-                    phone: phone,
+                    password: password,
                     email: email,
                 },
                 cache: false,
