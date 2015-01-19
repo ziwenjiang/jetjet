@@ -8,26 +8,33 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
-            var name = $("input#name").val();
+            var username = $("input#username").val();
             var email = $("input#email").val();
-            var phone = $("input#phone").val();
-            var message = $("textarea#message").val();
-            var firstName = name; // For Success/Failure Message
+            var password = $("input#password").val();
+    
+
+            var firstName = username; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
+                firstName = username.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "/signup/",
                 type: "POST",
                 data: {
-                    name: name,
+                    username: username,
                     phone: phone,
                     email: email,
-                    message: message
                 },
                 cache: false,
-                success: function() {
+                success: function(data) {
+
+                    if (data=='successful'){
+                        alert('This worked!')
+                    }
+                    if (data=='taken'){
+                        alert('This is taken!')
+                    }
                     // Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")

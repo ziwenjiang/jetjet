@@ -9,6 +9,12 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^jetapp/', include('jetapp.urls')),
+                       
+                       
+    url(r'^signup/', 'login.views.signup'), #tugrul
+                       
+                       
+    url(r'^home/', 'login.views.home'), #tugrul
 )
 
 if settings.DEBUG:

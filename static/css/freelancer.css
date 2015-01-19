@@ -4,6 +4,23 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+ /*Classes defined by me*/
+
+ #introimage{
+
+    width:20em;
+
+ }
+
+ #yazi{
+    
+    text-align:center;
+ }
+
+#dolgusler{
+    background-position: left;
+}
+
 body {
     overflow-x: hidden;
 }
@@ -25,6 +42,7 @@ a.active {
     color: #18bc9c;
 }
 
+
 h1,
 h2,
 h3,
@@ -38,7 +56,7 @@ h6 {
 
 hr.star-light,
 hr.star-primary {
-    margin: 25px auto 30px;
+    margin: 500px auto 30px;
     padding: 0;
     max-width: 250px;
     border: 0;
@@ -132,7 +150,9 @@ header .intro-text .skills {
     }
 
     .navbar-fixed-top .navbar-brand {
-        font-size: 2em;
+        font-size: 5em;
+        /*position:relative;
+        left:860px;*/
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
         transition: all .3s;
