@@ -114,4 +114,8 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
+<<<<<<< Updated upstream
         return render(request, 'jetapp/login.html', {})
+=======
+        return render(request, 'jetapp/login.html', {})
+>>>>>>> Stashed changes
