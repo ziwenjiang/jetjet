@@ -43,6 +43,8 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
+            user = authenticate(username=request.POST["username"], password=request.POST["password"])
+            login(request, user)
 
             # Now sort out the UserProfile instance.
             # Since we need to set the user attribute ourselves, we set commit=False.
@@ -66,6 +68,11 @@ def register(request):
         # They'll also be shown to the user.
         else:
             print user_form.errors, profile_form.errors
+            return render(request,
+                          'introindextry.html',
+                          {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+
+#THINK ABOUT THIS
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
@@ -74,11 +81,10 @@ def register(request):
         profile_form = UserProfileForm()
 
     # Render the template depending on the context.
-    return render(request,
-            'jetapp/register.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+    #my_foods = Food.objects.filter(user_id=request.user.id)
+    return HttpResponseRedirect('/jetapp/profile/' + str(request.user.id))
 
-
+#HTTP REDIRECT
 def user_login(request):
 
     # If the request is a HTTP POST, try to pull out the relevant information.
@@ -101,7 +107,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/jetapp/')
+                return HttpResponseRedirect('/jetapp/profile/' + str(request.user.id))
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your Fook account is disabled.")
@@ -131,4 +137,23 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/home/')
+
+
+
+
+def profile(request, userid):
+    from django.contrib.auth.models import User
+    user = User.objects.get(id=userid)
+    
+    # Construct a dictionary to pass to the template engine as its context.
+    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
+    #context_dict = {'boldmessage': "I am bold font from the context"}
+    
+    # Return a rendered response to send to the client.
+    # We make use of the shortcut function to make our lives easier.
+    # Note that the first parameter is the template we wish to use.
+    
+    return render(request, 'jetapp/profile.html', {'this_user':user})
+
+
 

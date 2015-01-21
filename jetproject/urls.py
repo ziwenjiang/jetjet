@@ -8,13 +8,18 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+                       
     url(r'^jetapp/', include('jetapp.urls')),
                        
                        
-    url(r'^signup/', 'login.views.signup'), #tugrul
+    url(r'^signup/', 'jetapp.views.signup'), #tugrul
                        
                        
     url(r'^home/', 'login.views.home'), #tugrul
+    
+    url(r'^login/', 'jetapp.views.user_login') #efe
+                       
+    
 )
 
 if settings.DEBUG:
@@ -23,3 +28,5 @@ if settings.DEBUG:
         (r'^media/(?P<path>.*)',
         'serve',
         {'document_root': settings.MEDIA_ROOT}), )
+
+

@@ -13,13 +13,9 @@
 
 <link rel="shortcut icon" href="/static/img/specialicon.ico" type="image/x-icon" />
     <title>FOOK
-    
-
-
-
     </title>
 
-    {% load staticfiles %}
+   
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href= {% static "css/bootstrap.min.css" %} rel="stylesheet">
 
@@ -108,25 +104,28 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    {% if registered %}
+                    {% else %}
+                    <form action="/jetapp/register/" id="user_form" method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Choose a Unique Username" id="username" required data-validation-required-message="Please enter your name.">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="Choose a Unique Username" id="username" required data-validation-required-message="Please enter your name." name="username">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+                                <input type="email" class="form-control" placeholder="Email Address" id="email" name="email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password" id="password" required data-validation-required-message="Please enter your phone number.">
+                                <input type="password" class="form-control" name="password" placeholder="Password" id="password" required data-validation-required-message="Please enter your phone number.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -135,10 +134,13 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Sign Up!</button>
+
+
+                                <button type="submit" name="submit" class="btn btn-success btn-lg">Sign Up!</button>
                             </div>
                         </div>
                     </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -204,7 +206,9 @@
 
     <!-- Contact Form JavaScript -->
     <script src="/static/js/jqBootstrapValidation.js"></script>
+    <!-- 
     <script src="/static/js/contact_me.js"></script>
+     -->
 
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/freelancer.js"></script>
