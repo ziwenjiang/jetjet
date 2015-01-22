@@ -1,1 +1,1 @@
-web: gunicorn jetapp.wsgi --log-file -
+web: gunicorn jetproject.wsgi --log-file -
